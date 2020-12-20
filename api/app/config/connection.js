@@ -1,7 +1,7 @@
 const elasticsearch = require("elasticsearch");
 
-const index = 'blog'
-const type = 'article'
+const index = 'blog2'
+const type = '_doc'
 const port = 9200
 const host = process.env.ES_HOST || 'localhost'
 const client = new elasticsearch.Client({host:{host, port}})
@@ -15,7 +15,7 @@ async function checkConnection () {
         console.log(health)
         isConnected = true
       } catch (err) {
-        console.log('Connection Failed', err)
+        console.log('Connection Failed...', err)
       }
     }
   }
@@ -26,16 +26,7 @@ async function resetIndex () {
     }
   
     await client.indices.create({ index })
-    await dataMapping()
   }
-
-async function dataMapping () {
-    const schema = {
-        title: { type: 'keyword' },
-        text: { type: 'text' }
-    }
-    return client.indices.putMapping({ index, body: { properties: schema } })
-}
 
 module.exports = {
     client, index, type, checkConnection, resetIndex

@@ -1,4 +1,5 @@
 const search = require('../controllers/search.controller')
+const verifyFields = require('../middleware/verifyFields')
 module.exports = function (app) {
     app.use(function (req, res, next) {
       res.header(
@@ -8,10 +9,10 @@ module.exports = function (app) {
       next();
     });
 
-    app.get("/search", function(req, res){
+    app.get("/search", verifyFields.checkQuery, async (req, res) => {
         const {term, offset} = req.query;
-        res.body = search.queryTerm(term, offset);
-        res.send(res.body);
+        const results = await search.queryTerm(term, offset);
+        res.send(results['hits']['hits'].slice(5));
         return;
     });
   };
