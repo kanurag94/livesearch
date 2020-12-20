@@ -1,3 +1,5 @@
+// Indexes datbase
+
 const fs = require('fs')
 const path = require('path')
 const csvReader = require('fast-csv')
@@ -55,7 +57,7 @@ async function insertData (titles, texts) {
         'text': texts[i],
       }
     }, function(err, res, status) {
-      // console.log(res);
+      if(i%500 === 0) console.log(status)
     }) 
   }
 }

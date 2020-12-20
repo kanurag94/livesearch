@@ -9,7 +9,7 @@ export function ResultList() {
       const {target: {value}} = e;
       fetchResults({
           term: value,
-          offset: 5,
+          offset: 0,
       }).then(results => {
           setData(results)
       })
@@ -17,10 +17,10 @@ export function ResultList() {
 
   return (
     <>
-    <input type="text" onChange={handleChange}/>
+    <input type="text" placeholder="Type something here ..." onChange={handleChange}/>
       <ul className="list pl0 cf">
-        {data.map((result) => (
-          <ResultCard key={result.id} result={result} />
+        {data.length === 0?"No results": data.map((result) => (
+          <ResultCard key={result._id} result={result} />
         ))}
       </ul>
     </>

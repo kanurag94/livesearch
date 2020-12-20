@@ -12,7 +12,10 @@ module.exports = {
         } } },
       highlight: { fields: { text: {} } }
     }
-
-    return client.search({ index, type, body })
+    return client.search({
+      index,
+      type,
+      body,
+      size: 5 })
   }
 }

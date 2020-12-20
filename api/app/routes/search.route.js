@@ -12,7 +12,7 @@ module.exports = function (app) {
     app.get("/search", verifyFields.checkQuery, async (req, res) => {
         const {term, offset} = req.query;
         const results = await search.queryTerm(term, offset);
-        res.send(results['hits']['hits'].slice(5));
+        res.send(results['hits']['hits']);
         return;
     });
   };

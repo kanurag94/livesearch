@@ -6,12 +6,6 @@ checkQuery = (req, res, next) => {
           });
         return;
     }
-    // if(isNaN(offset) ||  offset < 0) {
-    //     res.status(400).send({
-    //         message: "Illegal offset",
-    //     });
-    //     return;
-    // }
     next();
 }
 
