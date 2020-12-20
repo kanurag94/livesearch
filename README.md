@@ -7,7 +7,8 @@ Live Search with React, NodeJS and Elasticsearch
 3. To server frontend ```cd ui && npm start # serves at localhost:3001```
 
 ## API details
-``` GET /search
+```
+GET /search
       {
         term: the search query,
         offset: from which query to start,
