@@ -1,5 +1,5 @@
 import { fetchResults } from '../services/search-service';
-import React, { useRef, useState } from 'react';
+import React, {useState } from 'react';
 import ResultCard from './result-card';
 
 export function ResultList() {

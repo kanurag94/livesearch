@@ -1,5 +1,4 @@
 import React from 'react';
-import { ResultList } from './result-list';
 
 export default function ResultCard(props) {
   const { result } = props;
