@@ -12,6 +12,8 @@ module.exports = {
         } } },
       highlight: { fields: { text: {} } }
     }
+    
+    // Returns 5 records
     return client.search({
       index,
       type,

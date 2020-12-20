@@ -6,6 +6,7 @@ const csvReader = require('fast-csv')
 const esConnection = require('../config/connection')
 const { text } = require('express')
 
+// Reads csv asynchronously
 async function readCSV(filePath) {
     try{
       const titles = []
@@ -19,6 +20,8 @@ async function readCSV(filePath) {
           })
           .on('end', rowCount => {
             console.log(`Parsed ${rowCount} rows`)
+
+            // Insert data to ES client after populating
             insertData(titles, texts)
           });
       } catch (err) {
@@ -36,7 +39,7 @@ async function updateData () {
     let files = fs.readdirSync('../dataset').filter(file => file.slice(-4) === '.csv')
     console.log(`Found ${files.length} Files`)
 
-    // Read each book file, and index each paragraph in elasticsearch
+    // Read each file
     for (let file of files) {
       console.log(`Reading File - ${file}`)
       const filePath = path.join('../dataset', file)
@@ -47,6 +50,7 @@ async function updateData () {
   }
 }
 
+// Inserts data into index
 async function insertData (titles, texts) {
   for(let i=0; i < texts.length; i++) {
     esConnection.client.index({
@@ -57,7 +61,10 @@ async function insertData (titles, texts) {
         'text': texts[i],
       }
     }, function(err, res, status) {
-      if(i%500 === 0) console.log(status)
+      if(i%500 === 0){
+        console.log(status)
+        console.log(`Indexed ${i-500}-${i} records`)
+      }
     }) 
   }
 }

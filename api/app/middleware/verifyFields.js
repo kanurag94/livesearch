@@ -1,3 +1,4 @@
+// Checks if incoming term is valid or not
 checkQuery = (req, res, next) => {
     const {term, offset} = req.query;
     if(term == undefined || term.length<1){

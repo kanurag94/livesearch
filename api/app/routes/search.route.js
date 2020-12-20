@@ -12,6 +12,8 @@ module.exports = function (app) {
     app.get("/search", verifyFields.checkQuery, async (req, res) => {
         const {term, offset} = req.query;
         const results = await search.queryTerm(term, offset);
+
+        // sends dictionary containing matching records
         res.send(results['hits']['hits']);
         return;
     });

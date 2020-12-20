@@ -1,5 +1,5 @@
 /**
- * Performs a GET request to the GeoGebra API.
+ * Performs a GET request to the backend API
  * @param url
  * @param params
  * @returns {Promise<any>}
