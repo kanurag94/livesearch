@@ -52,20 +52,22 @@ async function updateData () {
 
 // Inserts data into index
 async function insertData (titles, texts) {
+  // Do bulk operations together (500 on iterations)
+  let bulkQuery = []
   for(let i=0; i < texts.length; i++) {
-    esConnection.client.index({
-      index: esConnection.index,
-      type: esConnection.type,
-      body: {
-        'title': titles[i],
-        'text': texts[i],
-      }
-    }, function(err, res, status) {
-      if(i%500 === 0){
-        console.log(status)
-        console.log(`Indexed ${i-500}-${i} records`)
-      }
-    }) 
+    bulkQuery.push({index: {_index: esConnection.index, _type: esConnection.type}})
+    bulkQuery.push({
+      'title': titles[i],
+      'text': texts[i]
+    })
+    if(i%500 === 0){
+      await esConnection.client.bulk(
+        {
+          body: bulkQuery
+        }
+      )
+      bulkQuery = []
+    }
   }
 }
 

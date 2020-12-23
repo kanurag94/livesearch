@@ -68,9 +68,7 @@ GET /search
 ### Pending work
 
 1. Dockerizing the files.
-2. Making UI pleasing.
-3. Elasticsearch should be able to use bulkapi to put data (this will make indexing faster)
-4. Should only return id, title, and texts. This would be simple but can make search slower.
+2. Should only return id, title, and texts. This would be simple but can make search slower.
 
 ### Thanks
 
