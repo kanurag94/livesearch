@@ -2,6 +2,7 @@
 
 Live Search with React, NodeJS and Elasticsearch
 
+```
 ├── api
 │   ├── app
 │   │   ├── config
@@ -44,6 +45,7 @@ Live Search with React, NodeJS and Elasticsearch
 │   └── services
 │   └── search-service.js
 └── yarn.lock
+```
 
 ## How to run
 
