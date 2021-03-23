@@ -51,7 +51,7 @@ Live Search with React, NodeJS and Elasticsearch
 
 1. Run elastic search instance locally e.g. [Elastic Search Guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
 2. To serve backend at localhost:3000 `cd api && node api/models/search.model.js && node app.js #serves at localhost:3000`
-3. To server frontend `cd ui && npm start # serves at localhost:3001`
+3. To serve frontend `cd ui && npm start # serves at localhost:3001`
 
 ## API details
 
